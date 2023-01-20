@@ -5,13 +5,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // Pages
 import ListProducts from '../../ui/views/product_list/index';
 import DetailProduct from '../../ui/views/detail_product';
+import {lightPurpleColor} from '../theme/colors';
 
-export type RootStackParamList = {
-  ListProducts: undefined;
-  DetailProduct: undefined;
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
 
 function Routes() {
   return (
@@ -29,8 +25,9 @@ function Routes() {
           name="DetailProduct"
           component={DetailProduct}
           options={{
-            title: '',
-            headerTransparent: true,
+            headerStyle: {
+              backgroundColor: lightPurpleColor,
+            },
           }}
         />
       </Stack.Navigator>

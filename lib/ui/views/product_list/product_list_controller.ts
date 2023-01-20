@@ -1,5 +1,3 @@
-import axios from 'axios';
-import {url} from '../../../core/constants/constant';
 import {
   setProductsList,
   setSelectedFilter,
@@ -9,30 +7,25 @@ import {useDispatch} from 'react-redux';
 import {FilterType} from '../../../data/enums/filters_enum';
 import {useNavigation} from '@react-navigation/native';
 import {IProduct} from '../../../data/interfaces/product_interface';
-import {RootStackParamList} from '../../../core/routes';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-
-type listProductScreenProp = NativeStackScreenProps<
-  RootStackParamList,
-  'ListProducts'
->;
+import {Navigation} from '../../../data/types/navigation_type';
+import {ProductService} from '../../../core/services/product_service';
 
 export const useProductListController = () => {
   const dispatch = useDispatch();
-  const {navigation} = useNavigation<listProductScreenProp>();
+  const navigation = useNavigation<Navigation>();
 
-  const getProdcts = async () => {
-    const {data} = await axios.get(url);
-    if (data) {
-      dispatch(setProductsList(data));
+  const getProdcts = async (): Promise<void> => {
+    const products = await ProductService.getProducts();
+    if (products) {
+      dispatch(setProductsList(products));
     }
   };
 
-  const handleSelectedFilter = (value: FilterType) => {
+  const handleSelectedFilter = (value: FilterType): void => {
     dispatch(setSelectedFilter(value));
   };
 
-  const handleDetailProduct = (product: IProduct) => {
+  const handleDetailProduct = (product: IProduct): void => {
     dispatch(setSelectedProduct(product));
     navigation.navigate('DetailProduct');
   };

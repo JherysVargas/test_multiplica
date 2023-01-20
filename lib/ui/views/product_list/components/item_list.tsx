@@ -1,16 +1,21 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Pressable, Text, Image, StyleSheet} from 'react-native';
 import moment from 'moment';
 import {IProduct} from '../../../../data/interfaces/product_interface';
 import {greenColor, redColor} from '../../../../core/theme/colors';
+import {useProductListController} from '../product_list_controller';
 
 type IPropsItemList = {
   product: IProduct;
 };
 
 const ItemList = ({product}: IPropsItemList) => {
+  const {handleDetailProduct} = useProductListController();
+
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={_ => handleDetailProduct(product)}
+      style={styles.container}>
       <Image source={{uri: product.image}} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.name} numberOfLines={1}>
@@ -35,7 +40,7 @@ const ItemList = ({product}: IPropsItemList) => {
         </Text>
       </View>
       <Text style={styles.arrow}>{'>'}</Text>
-    </View>
+    </Pressable>
   );
 };
 

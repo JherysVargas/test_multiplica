@@ -24,7 +24,7 @@ const Button = ({label, style, onPress}: IPropsButton) => {
 
 const styles = StyleSheet.create({
   button: {
-    height: 55,
+    height: 50,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
