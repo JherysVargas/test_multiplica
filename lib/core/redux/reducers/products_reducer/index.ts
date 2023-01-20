@@ -15,6 +15,7 @@ const productsSlice = createSlice({
       state.detailProduct = action.payload;
     },
     setSelectedFilter(state, action) {
+      state.selectedFilter = action.payload;
       switch (action.payload) {
         case FilterType.NEGATIVE: {
           state.filterProductList = state.allProductList.filter(
@@ -30,9 +31,9 @@ const productsSlice = createSlice({
         }
         default: {
           state.filterProductList = state.allProductList;
+          break;
         }
       }
-      state.selectedFilter = action.payload;
     },
   },
 });

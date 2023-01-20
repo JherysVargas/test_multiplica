@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import RNPickerSelect, {Item} from 'react-native-picker-select';
 import {FilterType} from '../../../../data/enums/filters_enum';
 import {Chevron} from 'react-native-shapes';
@@ -14,10 +14,6 @@ const filters: Item[] = [
   {label: 'Canjeados', value: FilterType.NEGATIVE},
 ];
 
-const _renderChevron: any = () => {
-  return <Chevron size={1.2} color={primaryColor} />;
-};
-
 const Filters = () => {
   const selectedFilter = useSelector<RootState, FilterType>(
     state => state.products.selectedFilter,
@@ -25,32 +21,35 @@ const Filters = () => {
   const {handleSelectedFilter} = useProductListController();
 
   return (
-    <RNPickerSelect
-      items={filters}
-      style={styles}
-      value={selectedFilter}
-      onValueChange={handleSelectedFilter}
-      placeholder={{}}
-      useNativeAndroidPickerStyle={false}
-      Icon={_renderChevron}
-    />
+    <View style={styles.containerPicker}>
+      <RNPickerSelect
+        items={filters}
+        style={styles}
+        value={selectedFilter}
+        onValueChange={handleSelectedFilter}
+        placeholder={{}}
+        useNativeAndroidPickerStyle={false}
+      />
+      <Chevron size={1.2} color={primaryColor} />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  iconContainer: {
-    top: 7,
-    right: 0,
+  containerPicker: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   inputIOS: {
     fontSize: 16,
-    marginRight: 20,
+    marginRight: 6,
     fontWeight: '600',
     color: primaryColor,
   },
   inputAndroid: {
     fontSize: 16,
-    marginRight: 20,
+    marginRight: 6,
     fontWeight: '600',
     color: primaryColor,
   },
