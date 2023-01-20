@@ -1,19 +1,22 @@
 import React from 'react';
-import {Pressable, Text, StyleSheet, GestureResponderEvent} from 'react-native';
+import {
+  Pressable,
+  Text,
+  StyleSheet,
+  GestureResponderEvent,
+  ViewStyle,
+} from 'react-native';
 import {primaryColor} from '../../core/theme/colors';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type IPropsButton = {
   label: string;
+  style?: ViewStyle;
   onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
 };
 
-const Button = ({label, onPress}: IPropsButton) => {
-  const {bottom} = useSafeAreaInsets();
+const Button = ({label, style, onPress}: IPropsButton) => {
   return (
-    <Pressable
-      onPress={onPress}
-      style={{...styles.button, marginBottom: bottom + 5}}>
+    <Pressable onPress={onPress} style={[styles.button, style]}>
       <Text style={styles.text}>{label}</Text>
     </Pressable>
   );

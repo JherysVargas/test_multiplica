@@ -5,7 +5,6 @@ import {useHeaderHeight} from '@react-navigation/elements';
 import CardPoints from './components/card_points';
 import SectionProductList from './components/section_product_list';
 import {useProductListController} from './product_list_controller';
-import Button from '../../components/button';
 
 const ListProducts = ({navigation}: any) => {
   const headerHeight = useHeaderHeight();
@@ -22,7 +21,6 @@ const ListProducts = ({navigation}: any) => {
     <View style={{...styles.container, paddingTop: headerHeight + 25}}>
       <CardPoints />
       <SectionProductList />
-      <Button label="Todos" />
     </View>
   );
 };

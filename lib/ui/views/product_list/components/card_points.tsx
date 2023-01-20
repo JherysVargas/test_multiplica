@@ -9,7 +9,7 @@ import {RootState} from '../../../../core/redux/config';
 
 const CardPoints = () => {
   const products = useSelector<RootState, IProduct[]>(
-    state => state.products.productList,
+    state => state.products.allProductList,
   );
 
   const _getTotalPoints = useMemo(() => {

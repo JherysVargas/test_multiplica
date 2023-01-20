@@ -5,12 +5,13 @@ import {useSelector} from 'react-redux';
 import {IProduct} from '../../../../data/interfaces/product_interface';
 import {RootState} from '../../../../core/redux/config';
 import ItemList from './item_list';
+import Filters from './filters';
 
 const renderSeparator = () => <View style={styles.separator} />;
 
 const SectionProductList = () => {
   const products = useSelector<RootState, IProduct[]>(
-    state => state.products.productList,
+    state => state.products.filterProductList,
   );
 
   const _renderItem: ListRenderItem<IProduct> = useCallback(({item}) => {
@@ -19,7 +20,10 @@ const SectionProductList = () => {
 
   return (
     <View style={styles.container}>
-      <TitleSection title="TUS MOVIMIENTOS" />
+      <View style={styles.sectionHeader}>
+        <TitleSection title="TUS MOVIMIENTOS" />
+        <Filters />
+      </View>
       <FlatList
         data={products}
         nestedScrollEnabled
@@ -50,6 +54,11 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 8,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });
 
