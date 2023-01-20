@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, ScrollView, Text, Image, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../core/redux/config';
 import {IProduct} from '../../../data/interfaces/product_interface';
@@ -19,7 +19,7 @@ const DetailProduct = ({navigation}: any) => {
   }, [navigation, detailProduct]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.containerImage}>
         <Image source={{uri: detailProduct.image}} style={styles.image} />
       </View>
@@ -37,7 +37,7 @@ const DetailProduct = ({navigation}: any) => {
         label="Aceptar"
         onPress={() => navigation.goBack()}
       />
-    </View>
+    </ScrollView>
   );
 };
 

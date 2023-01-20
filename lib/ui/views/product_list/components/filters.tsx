@@ -36,6 +36,12 @@ const Filters = () => {
 };
 
 const styles = StyleSheet.create({
+  inputAndroidContainer: {
+    padding: 6,
+  },
+  inputIOSContainer: {
+    padding: 6,
+  },
   containerPicker: {
     flexDirection: 'row',
     alignItems: 'center',
